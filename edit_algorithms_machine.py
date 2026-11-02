@@ -564,6 +564,80 @@ best_model = (
 print(
     grid_search.best_params_
 )
+# Step 13.1: Confusion Matrix for Best Model
+
+y_pred_best = best_model.predict(
+    X_test
+)
+
+cm = confusion_matrix(
+    y_test,
+    y_pred_best
+)
+
+print(
+    "\nBEST MODEL CONFUSION MATRIX"
+)
+
+print(cm)
+
+cm_df = pd.DataFrame(
+    cm,
+    index=[
+        "Actual No Hypertension",
+        "Actual Hypertension"
+    ],
+    columns=[
+        "Predicted No Hypertension",
+        "Predicted Hypertension"
+    ]
+)
+
+print(
+    "\nFormatted Confusion Matrix"
+)
+
+print(
+    cm_df.to_string()
+)
+
+plt.figure(figsize=(8,6))
+
+sns.heatmap(
+    cm,
+    annot=True,
+    fmt="d",
+    cmap="Blues",
+    xticklabels=[
+        "No Hypertension",
+        "Hypertension"
+    ],
+    yticklabels=[
+        "No Hypertension",
+        "Hypertension"
+    ]
+)
+
+plt.title(
+    "Confusion Matrix - Best Random Forest Model"
+)
+
+plt.xlabel(
+    "Predicted Class"
+)
+
+plt.ylabel(
+    "Actual Class"
+)
+
+plt.tight_layout()
+
+plt.savefig(
+    "best_model_confusion_matrix.png",
+    dpi=300
+)
+
+plt.close()
 importances = (
     best_model.feature_importances_
 )
