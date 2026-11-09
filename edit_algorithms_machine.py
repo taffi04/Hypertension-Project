@@ -564,6 +564,7 @@ best_model = (
 print(
     grid_search.best_params_
 )
+
 # Step 13.1: Confusion Matrix for Best Model
 
 y_pred_best = best_model.predict(
@@ -638,6 +639,7 @@ plt.savefig(
 )
 
 plt.close()
+
 importances = (
     best_model.feature_importances_
 )
@@ -662,6 +664,7 @@ feature_df.to_csv(
     "feature_importance_results.csv",
     index=False
 )
+
 # Step 14: Saving the optimised model.
 
 model_package = {
